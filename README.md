@@ -1,5 +1,5 @@
 # visualAid
-Detects face and helps visually impaired to recognize people in advance
+Detects face and helps visually impaired to recognize people in advance using audio
 
 ## Create your dataset
 > Create a folder in dataset directory for each face you want to recognize and name it after them.
