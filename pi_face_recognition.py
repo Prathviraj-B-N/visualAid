@@ -6,7 +6,7 @@ from imutils.video import VideoStream
 from imutils.video import FPS
 from gtts import gTTS
 import face_recognition
-import argparse
+#import argparse
 import imutils
 import pickle
 import time
@@ -14,18 +14,18 @@ import cv2
 import os
 
 # construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-c", "--cascade", required=True,
-	help = "path to where the face cascade resides")
-ap.add_argument("-e", "--encodings", required=True,
-	help="path to serialized db of facial encodings")
-args = vars(ap.parse_args())
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-c", "--cascade", required=True,
+# 	help = "path to where the face cascade resides")
+# ap.add_argument("-e", "--encodings", required=True,
+# 	help="path to serialized db of facial encodings")
+# args = vars(ap.parse_args())
 
 # load the known faces and embeddings along with OpenCV's Haar
 # cascade for face detection
 print("[INFO] loading encodings + face detector...")
-data = pickle.loads(open(args["encodings"], "rb").read())
-detector = cv2.CascadeClassifier(args["cascade"])
+data = pickle.loads(open("encodings.pickle", "rb").read())
+detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
@@ -66,7 +66,7 @@ while True:
 	for encoding in encodings:
 		# attempt to match each face in the input image to our known
 		# encodings
-		matches = face_recognition.compare_faces(data["encodings"],
+		matches = face_recognition.compare_faces("encodings.pickle",
 			encoding)
 		name = "Unknown"
 
